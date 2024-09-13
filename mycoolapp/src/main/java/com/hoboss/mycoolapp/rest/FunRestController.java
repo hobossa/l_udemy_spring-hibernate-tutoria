@@ -20,4 +20,9 @@ public class FunRestController {
     public String getDailyWorkout() {
         return "Run a hard 500k!";
     }
+
+    @GetMapping("/fortune")
+    public String getFortune() {
+        return "Today is your lucky day.";
+    }
 }
