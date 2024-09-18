@@ -1,4 +1,4 @@
-package com.hoboss.util;
+package com.hoboss.springcoredemo.common;
 
 public interface Coach {
     String getDailyWorkout();

@@ -1,4 +1,4 @@
-package com.hoboss.util;
+package com.hoboss.springcoredemo.common;
 
 import org.springframework.stereotype.Component;
 
