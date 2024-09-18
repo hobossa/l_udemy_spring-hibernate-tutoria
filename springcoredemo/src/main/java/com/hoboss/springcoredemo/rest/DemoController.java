@@ -12,7 +12,7 @@ public class DemoController {
     private Coach myCoach;
 
     @Autowired
-    public void setMyCoach(@Qualifier("baseballCoach") Coach myCoach) {
+    public void setMyCoach(Coach myCoach) {
         this.myCoach = myCoach;
     }
 
