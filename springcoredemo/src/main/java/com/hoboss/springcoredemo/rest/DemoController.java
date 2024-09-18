@@ -1,6 +1,6 @@
 package com.hoboss.springcoredemo.rest;
 
-import com.hoboss.springcoredemo.common.Coach;
+import com.hoboss.util.Coach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
