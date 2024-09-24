@@ -11,9 +11,21 @@ public class DemoController {
 
     private Coach myCoach;
 
+    private Coach anotherCoach;
+
     @Autowired
-    public void setMyCoach(Coach myCoach) {
+    public void setMyCoach(@Qualifier("cricketCoach") Coach myCoach) {
         this.myCoach = myCoach;
+    }
+
+    @Autowired
+    public void setAnotherCoach(@Qualifier("cricketCoach") Coach anotherCoach) {
+        this.anotherCoach = anotherCoach;
+    }
+
+    @GetMapping("/check")
+    public String check() {
+        return "myCoach == anotherCoach:" + (this.myCoach == this.anotherCoach);
     }
 
     @GetMapping("/dailyworkout")
