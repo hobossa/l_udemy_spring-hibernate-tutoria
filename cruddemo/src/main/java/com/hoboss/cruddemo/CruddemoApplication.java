@@ -56,7 +56,6 @@ public class CruddemoApplication {
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
-//		Student student = new Student("Jack", "Shark", "J.shark@gmail.com");
 		int id = 1;
 		Student student = studentDAO.findById(id);
 		student.setFirstName("Jack");
@@ -66,4 +65,6 @@ public class CruddemoApplication {
 		studentDAO.update(student);
 		System.out.println("Updated Student: " + student);
 	}
+
+
 }
