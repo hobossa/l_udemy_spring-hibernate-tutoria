@@ -32,6 +32,7 @@ public class DemoSecurityConfig {
                         .requestMatchers(HttpMethod.DELETE, "/api/employees/**").hasRole("ADMIN")
         );
 
+
         // use HTTP Basic authentication
         http.httpBasic(Customizer.withDefaults());
 
