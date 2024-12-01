@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Student Registration Form</title>
@@ -11,13 +11,22 @@
     <form th:action="@{./processForm}" th:object="${student}" method="POST">
         First name: <input type="text" th:field="*{firstName}" placeholder="What's your first name?"/>
         <br><br>
+
         Last name: <input type="text" th:field="*{lastName}" placeholder="What's your last name?"/>
         <br><br>
+
         Country:
         <select th:field="*{country}">
             <option th:each="tempCountry : ${countries}" th:value="${tempCountry}" th:text="${tempCountry}" />
         </select>
         <br><br>
+
+        Favorite Programming Language:
+        <input type="radio" th:field="*{favoriteLanguage}"
+               th:each="tempLang : ${programmingLanguages}" th:value="${tempLang}" th:text="${tempLang}"/>
+
+        <br><br>
+
         <input type="submit" value="Submit"/>
     </form>
 
