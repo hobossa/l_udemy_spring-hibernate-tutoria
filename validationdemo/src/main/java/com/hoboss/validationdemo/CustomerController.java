@@ -23,6 +23,12 @@ public class CustomerController {
 
     @PostMapping("/processForm")
     public String processForm(@Valid @ModelAttribute("customer") Customer customer, BindingResult bindingResult) {
+
+        // this will output the message error type if there is one.
+        System.out.println("\n\n");
+        System.out.println("Binding results: " + bindingResult.toString());
+        System.out.println("\n\n");
+
         if (bindingResult.hasErrors()) {
             return "customer-form";
         }
