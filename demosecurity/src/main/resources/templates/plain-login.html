@@ -17,6 +17,9 @@
         <div class="alert alert-danger" th:if="${param.error}">
             <i>Sorry! You entered invalid username/password.</i>
         </div>
+        <div class="alert alert-info" th:if="${param.logout}">
+            <i>You have been logged out.</i>
+        </div>
         <p>
             User name: <input type="text" name="username"/>
         </p>
