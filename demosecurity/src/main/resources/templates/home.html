@@ -17,9 +17,12 @@
 
 
 <p>
+<div sec:authorize="hasRole('MANAGER')">
     <a th:href="@{/leaders}">Leadership Meeting</a> (Only for Manager peeps)
-    <br>
+</div>
+<div sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/systems}">IT System Meeting</a> (Only for Admin peeps)
+</div>
 </p>
 
 <hr>
