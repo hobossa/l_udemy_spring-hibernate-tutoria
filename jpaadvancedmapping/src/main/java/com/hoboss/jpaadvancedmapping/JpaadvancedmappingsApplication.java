@@ -30,6 +30,7 @@ public class JpaadvancedmappingsApplication {
 		System.out.println("Finding instructor detail id: " + id);
 		InstructorDetail instructorDetail = appDAO.findInstructorDetailById(id);
 		System.out.println("InstructorDetail: " + instructorDetail);
+		System.out.println("The associated Instructor: " + instructorDetail.getInstructor());
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
