@@ -18,8 +18,16 @@ public class JpaadvancedmappingsApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDAO appDAO) {
 		return runner -> {
-			createInstructor(appDAO);
+//			createInstructor(appDAO);
+			findInstructor(appDAO);
 		};
+	}
+
+	private void findInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor id: " + id);
+		Instructor instructor = appDAO.findInstructorById(id);
+		System.out.println("Instructor: " + instructor);
 	}
 
 	private void createInstructor(AppDAO appDAO) {
