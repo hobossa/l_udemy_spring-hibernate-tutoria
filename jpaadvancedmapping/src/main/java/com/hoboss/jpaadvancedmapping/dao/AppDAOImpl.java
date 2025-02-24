@@ -1,6 +1,7 @@
 package com.hoboss.jpaadvancedmapping.dao;
 
 import com.hoboss.jpaadvancedmapping.entity.Instructor;
+import com.hoboss.jpaadvancedmapping.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +33,11 @@ public class AppDAOImpl implements AppDAO{
     public void deleteInstructorById(int id) {
         Instructor instructor = this.entityManager.find(Instructor.class, id);
         this.entityManager.remove(instructor);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int id) {
+        return this.entityManager.find(InstructorDetail.class, id);
     }
 
 }

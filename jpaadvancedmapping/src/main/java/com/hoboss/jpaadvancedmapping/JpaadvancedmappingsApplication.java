@@ -20,8 +20,16 @@ public class JpaadvancedmappingsApplication {
 		return runner -> {
 //			createInstructor(appDAO);
 //			findInstructor(appDAO);
-			deleteInstructor(appDAO);
+//			deleteInstructor(appDAO);
+			findInstructorDetail(appDAO);
 		};
+	}
+
+	private void findInstructorDetail(AppDAO appDAO) {
+		int id = 2;
+		System.out.println("Finding instructor detail id: " + id);
+		InstructorDetail instructorDetail = appDAO.findInstructorDetailById(id);
+		System.out.println("InstructorDetail: " + instructorDetail);
 	}
 
 	private void deleteInstructor(AppDAO appDAO) {
