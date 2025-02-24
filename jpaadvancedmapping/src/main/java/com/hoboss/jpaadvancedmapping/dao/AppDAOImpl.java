@@ -44,6 +44,8 @@ public class AppDAOImpl implements AppDAO{
     @Transactional
     public void deleteInstructorDetailById(int id) {
         InstructorDetail instructorDetail = this.entityManager.find(InstructorDetail.class, id);
+        // break bi-directional link
+        instructorDetail.getInstructor().setInstructorDetail(null);
         this.entityManager.remove(instructorDetail);
     }
 
