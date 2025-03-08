@@ -60,4 +60,13 @@ public class AppDAOImpl implements AppDAO{
         query.setParameter("id", id);
         return query.getResultList();
     }
+
+    @Override
+    @Transactional
+    public Instructor findInstructorByIdWithCourses(int id) {
+        TypedQuery<Instructor> query = entityManager.createQuery(
+                "SELECT i FROM Instructor i JOIN FETCH i.courses WHERE i.id = :id", Instructor.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
 }

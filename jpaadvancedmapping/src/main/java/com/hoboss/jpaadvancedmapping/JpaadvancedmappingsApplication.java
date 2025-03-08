@@ -29,8 +29,17 @@ public class JpaadvancedmappingsApplication {
 //			deleteInstructorDetail(appDAO);
 //			createInstructorWithCourses(appDAO);
 //			findInstructorWithCourses(appDAO);
-			findCourseForInstructor(appDAO);
+//			findCourseForInstructor(appDAO);
+			findInstructorWithCoursesEx(appDAO);
 		};
+	}
+
+	private void findInstructorWithCoursesEx(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor with courses id: " + id);
+		Instructor instructor = appDAO.findInstructorByIdWithCourses(id);
+		System.out.println("Instructor: " + instructor);
+		System.out.println("Instructor's courses: " + instructor.getCourses());
 	}
 
 	// fetch = FetchType.LAZY,
