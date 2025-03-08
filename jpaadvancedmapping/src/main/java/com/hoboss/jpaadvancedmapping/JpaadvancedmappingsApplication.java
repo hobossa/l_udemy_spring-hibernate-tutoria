@@ -8,6 +8,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @SpringBootApplication
 public class JpaadvancedmappingsApplication {
@@ -24,8 +27,30 @@ public class JpaadvancedmappingsApplication {
 //			deleteInstructor(appDAO);
 //			findInstructorDetail(appDAO);
 //			deleteInstructorDetail(appDAO);
-			createInstructorWithCourses(appDAO);
+//			createInstructorWithCourses(appDAO);
+//			findInstructorWithCourses(appDAO);
+			findCourseForInstructor(appDAO);
 		};
+	}
+
+	// fetch = FetchType.LAZY,
+	private void findCourseForInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor with courses id: " + id);
+		Instructor instructor = appDAO.findInstructorById(id);
+		List<Course> courses = appDAO.findCoursesByInstructorId(id);
+		instructor.setCourses(courses);
+		System.out.println("Instructor: " + instructor);
+		System.out.println("Instructor's courses: " + instructor.getCourses());
+	}
+
+	// fetch = FetchType.EAGER
+	private void findInstructorWithCourses(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor with courses id: " + id);
+		Instructor instructor = appDAO.findInstructorById(id);
+		System.out.println("Instructor: " + instructor);
+		System.out.println("Instructor's courses: " + instructor.getCourses());
 	}
 
 	private void createInstructorWithCourses(AppDAO appDAO) {

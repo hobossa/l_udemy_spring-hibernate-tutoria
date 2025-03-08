@@ -1,11 +1,15 @@
 package com.hoboss.jpaadvancedmapping.dao;
 
+import com.hoboss.jpaadvancedmapping.entity.Course;
 import com.hoboss.jpaadvancedmapping.entity.Instructor;
 import com.hoboss.jpaadvancedmapping.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class AppDAOImpl implements AppDAO{
@@ -49,4 +53,11 @@ public class AppDAOImpl implements AppDAO{
         this.entityManager.remove(instructorDetail);
     }
 
+    @Override
+    public List<Course> findCoursesByInstructorId(int id) {
+        TypedQuery<Course> query = this.entityManager.createQuery(
+                "from Course where instructor.id = :id", Course.class);
+        query.setParameter("id", id);
+        return query.getResultList();
+    }
 }
