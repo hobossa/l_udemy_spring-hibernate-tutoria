@@ -34,6 +34,7 @@ public class JpaadvancedmappingsApplication {
 		};
 	}
 
+	// JOIN FETCH
 	private void findInstructorWithCoursesEx(AppDAO appDAO) {
 		int id = 1;
 		System.out.println("Finding instructor with courses id: " + id);
@@ -48,6 +49,8 @@ public class JpaadvancedmappingsApplication {
 		System.out.println("Finding instructor with courses id: " + id);
 		Instructor instructor = appDAO.findInstructorById(id);
 		List<Course> courses = appDAO.findCoursesByInstructorId(id);
+		// the instructor's courses are not loaded yet, because of FetchType.LAZY.
+		// so we need to set the courses manually.
 		instructor.setCourses(courses);
 		System.out.println("Instructor: " + instructor);
 		System.out.println("Instructor's courses: " + instructor.getCourses());
