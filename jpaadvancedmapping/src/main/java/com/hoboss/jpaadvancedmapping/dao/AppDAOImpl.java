@@ -64,9 +64,26 @@ public class AppDAOImpl implements AppDAO{
     @Override
     @Transactional
     public Instructor findInstructorByIdWithCourses(int id) {
-        TypedQuery<Instructor> query = entityManager.createQuery(
+        TypedQuery<Instructor> query = this.entityManager.createQuery(
                 "SELECT i FROM Instructor i JOIN FETCH i.courses WHERE i.id = :id", Instructor.class);
         query.setParameter("id", id);
         return query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public void updateInstructor(Instructor instructor) {
+        this.entityManager.merge(instructor);
+    }
+
+    @Override
+    public Course findCourseById(int id) {
+        return this.entityManager.find(Course.class, id);
+    }
+
+    @Override
+    @Transactional
+    public void updateCourse(Course course) {
+        this.entityManager.merge(course);
     }
 }

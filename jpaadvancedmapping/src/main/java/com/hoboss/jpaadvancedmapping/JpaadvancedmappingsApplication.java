@@ -30,8 +30,27 @@ public class JpaadvancedmappingsApplication {
 //			createInstructorWithCourses(appDAO);
 //			findInstructorWithCourses(appDAO);
 //			findCourseForInstructor(appDAO);
-			findInstructorWithCoursesEx(appDAO);
+//			findInstructorWithCoursesEx(appDAO);
+//			updateInstructor(appDAO);
+			updateCourse(appDAO);
 		};
+	}
+
+	private void updateCourse(AppDAO appDAO) {
+		int id = 10;
+		System.out.println("Finding course id: " + id);
+		Course course = appDAO.findCourseById(id);
+		course.setTitle(course.getTitle().toUpperCase());
+		appDAO.updateCourse(course);
+	}
+
+	private void updateInstructor(AppDAO appDAO) {
+		int id = 1;
+		System.out.println("Finding instructor id: " + id);
+		Instructor instructor = appDAO.findInstructorById(id);
+		instructor.setLastName("Smith");
+		appDAO.updateInstructor(instructor);
+		System.out.println("Done");
 	}
 
 	// JOIN FETCH
