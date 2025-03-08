@@ -1,6 +1,7 @@
 package com.hoboss.jpaadvancedmapping;
 
 import com.hoboss.jpaadvancedmapping.dao.AppDAO;
+import com.hoboss.jpaadvancedmapping.entity.Course;
 import com.hoboss.jpaadvancedmapping.entity.Instructor;
 import com.hoboss.jpaadvancedmapping.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -22,8 +23,27 @@ public class JpaadvancedmappingsApplication {
 //			findInstructor(appDAO);
 //			deleteInstructor(appDAO);
 //			findInstructorDetail(appDAO);
-			deleteInstructorDetail(appDAO);
+//			deleteInstructorDetail(appDAO);
+			createInstructorWithCourses(appDAO);
 		};
+	}
+
+	private void createInstructorWithCourses(AppDAO appDAO) {
+		Instructor instructor = new Instructor(
+				"Madhu", "Patel", "madhu@luv2code.com");
+		InstructorDetail instructorDetail = new InstructorDetail(
+				"http://youtube.com/madhu", "Guitar");
+		instructor.setInstructorDetail(instructorDetail);
+		Course course1 = new Course("Air Guitar - The Ultimate Guide");
+		Course course2 = new Course("The Pinball Masterclass");
+		instructor.add(course1);
+		instructor.add(course2);
+
+		System.out.println("Saving instructor: " + instructor);
+		System.out.println("Instructor's details: " + instructorDetail);
+		System.out.println("Instructor's courses: " + instructor.getCourses());
+		// this will also save the courses and instructor details, because of CascadeType.PERSIST.
+		appDAO.save(instructor);
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
