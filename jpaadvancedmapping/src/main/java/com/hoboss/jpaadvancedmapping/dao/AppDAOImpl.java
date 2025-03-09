@@ -3,6 +3,7 @@ package com.hoboss.jpaadvancedmapping.dao;
 import com.hoboss.jpaadvancedmapping.entity.Course;
 import com.hoboss.jpaadvancedmapping.entity.Instructor;
 import com.hoboss.jpaadvancedmapping.entity.InstructorDetail;
+import com.hoboss.jpaadvancedmapping.entity.Student;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,10 +105,44 @@ public class AppDAOImpl implements AppDAO{
     }
 
     @Override
-    public Course findCourseAndReviewsById(int id) {
+    public Course findCourseAndReviewsByCourseId(int id) {
         TypedQuery<Course> query = this.entityManager.createQuery(
                 "SELECT c FROM Course c JOIN FETCH c.reviews WHERE c.id = :id", Course.class);
         query.setParameter("id", id);
         return query.getSingleResult();
+    }
+
+    @Override
+    public Course findCourseAndStudentsByCourseId(int id) {
+        TypedQuery<Course> query = this.entityManager.createQuery(
+                "SELECT c FROM Course c JOIN FETCH c.students WHERE c.id = :id", Course.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public Student findStudentAndCoursesByStudentId(int id) {
+        TypedQuery<Student> query = this.entityManager.createQuery(
+                "SELECT s FROM Student s JOIN FETCH s.courses WHERE s.id = :id", Student.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    @Transactional
+    public void updateStudent(Student student) {
+        this.entityManager.merge(student);
+    }
+
+    @Override
+    @Transactional
+    public void deleteStudentById(int id) {
+        Student student = findStudentAndCoursesByStudentId(id);
+        if (student != null) {
+            for (Course c : student.getCourses()) {
+                c.removeStudent(student);
+            }
+        }
+        this.entityManager.remove(student);
     }
 }

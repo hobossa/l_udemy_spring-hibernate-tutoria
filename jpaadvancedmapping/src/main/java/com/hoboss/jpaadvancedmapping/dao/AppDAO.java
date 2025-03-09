@@ -3,6 +3,7 @@ package com.hoboss.jpaadvancedmapping.dao;
 import com.hoboss.jpaadvancedmapping.entity.Course;
 import com.hoboss.jpaadvancedmapping.entity.Instructor;
 import com.hoboss.jpaadvancedmapping.entity.InstructorDetail;
+import com.hoboss.jpaadvancedmapping.entity.Student;
 
 import java.util.List;
 
@@ -19,5 +20,9 @@ public interface AppDAO {
     void updateCourse(Course course);
     void deleteCourseById(int id);
     void saveCourse(Course course);
-    Course findCourseAndReviewsById(int id);
+    Course findCourseAndReviewsByCourseId(int id);
+    Course findCourseAndStudentsByCourseId(int id);
+    Student findStudentAndCoursesByStudentId(int id);
+    void updateStudent(Student student);
+    void deleteStudentById(int id);
 }
