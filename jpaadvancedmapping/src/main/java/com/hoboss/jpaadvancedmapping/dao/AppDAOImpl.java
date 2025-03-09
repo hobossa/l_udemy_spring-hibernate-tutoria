@@ -23,7 +23,7 @@ public class AppDAOImpl implements AppDAO{
 
     @Override
     @Transactional
-    public void save(Instructor instructor) {
+    public void saveInstructor(Instructor instructor) {
         this.entityManager.persist(instructor);
     }
 
@@ -99,7 +99,15 @@ public class AppDAOImpl implements AppDAO{
 
     @Override
     @Transactional
-    public void save(Course course) {
+    public void saveCourse(Course course) {
         this.entityManager.persist(course);
+    }
+
+    @Override
+    public Course findCourseAndReviewsById(int id) {
+        TypedQuery<Course> query = this.entityManager.createQuery(
+                "SELECT c FROM Course c JOIN FETCH c.reviews WHERE c.id = :id", Course.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -39,14 +38,14 @@ public class JpaadvancedmappingsApplication {
 	}
 
 	private void createCourseAndReviews(AppDAO appDAO) {
-		Course course = new Course("Pacman - How To Score One Million Points");
+		Course course = new Course("Pacman - How To Java");
 		course.addReview(new Review("Great course ... loved it!"));
 		course.addReview(new Review("Cool course, job well done"));
 		course.addReview(new Review("What a dumb course, you are an idiot!"));
 
 		System.out.println("Saving course: " + course);
 		System.out.println("Course's reviews: " + course.getReviews());
-		appDAO.save(course);
+		appDAO.saveCourse(course);
 		System.out.println("Done");
 	}
 
@@ -113,7 +112,7 @@ public class JpaadvancedmappingsApplication {
 		System.out.println("Instructor's details: " + instructorDetail);
 		System.out.println("Instructor's courses: " + instructor.getCourses());
 		// this will also save the courses and instructor details, because of CascadeType.PERSIST.
-		appDAO.save(instructor);
+		appDAO.saveInstructor(instructor);
 	}
 
 	private void deleteInstructorDetail(AppDAO appDAO) {
@@ -153,7 +152,7 @@ public class JpaadvancedmappingsApplication {
 		instructor.setInstructorDetail(instructorDetail);
 
 		System.out.println("Saving instructor: " + instructorDetail);
-		appDAO.save(instructor);
+		appDAO.saveInstructor(instructor);
 		System.out.println("Done");
 	}
 }

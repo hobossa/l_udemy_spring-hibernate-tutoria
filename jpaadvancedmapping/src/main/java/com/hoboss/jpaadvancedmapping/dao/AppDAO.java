@@ -7,7 +7,7 @@ import com.hoboss.jpaadvancedmapping.entity.InstructorDetail;
 import java.util.List;
 
 public interface AppDAO {
-    void save(Instructor instructor);
+    void saveInstructor(Instructor instructor);
     Instructor findInstructorById(int id);
     void deleteInstructorById(int id);
     InstructorDetail findInstructorDetailById(int id);
@@ -18,5 +18,6 @@ public interface AppDAO {
     Course findCourseById(int id);
     void updateCourse(Course course);
     void deleteCourseById(int id);
-    void save(Course course);
+    void saveCourse(Course course);
+    Course findCourseAndReviewsById(int id);
 }
