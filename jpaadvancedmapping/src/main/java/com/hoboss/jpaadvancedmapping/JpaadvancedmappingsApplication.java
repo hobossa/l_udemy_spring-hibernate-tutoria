@@ -4,6 +4,7 @@ import com.hoboss.jpaadvancedmapping.dao.AppDAO;
 import com.hoboss.jpaadvancedmapping.entity.Course;
 import com.hoboss.jpaadvancedmapping.entity.Instructor;
 import com.hoboss.jpaadvancedmapping.entity.InstructorDetail;
+import com.hoboss.jpaadvancedmapping.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,8 +33,21 @@ public class JpaadvancedmappingsApplication {
 //			findCourseForInstructor(appDAO);
 //			findInstructorWithCoursesEx(appDAO);
 //			updateInstructor(appDAO);
-			updateCourse(appDAO);
+//			updateCourse(appDAO);
+			createCourseAndReviews(appDAO);
 		};
+	}
+
+	private void createCourseAndReviews(AppDAO appDAO) {
+		Course course = new Course("Pacman - How To Score One Million Points");
+		course.addReview(new Review("Great course ... loved it!"));
+		course.addReview(new Review("Cool course, job well done"));
+		course.addReview(new Review("What a dumb course, you are an idiot!"));
+
+		System.out.println("Saving course: " + course);
+		System.out.println("Course's reviews: " + course.getReviews());
+		appDAO.save(course);
+		System.out.println("Done");
 	}
 
 	private void updateCourse(AppDAO appDAO) {
