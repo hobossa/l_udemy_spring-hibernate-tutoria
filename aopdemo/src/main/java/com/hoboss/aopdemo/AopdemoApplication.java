@@ -22,7 +22,8 @@ public class AopdemoApplication {
 	}
 
 	private void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
-		accountDAO.addAccount();
+		accountDAO.addAccount("abcdef");
+		accountDAO.setName("123456");
 		membershipDAO.addAccount();
 		membershipDAO.addSillyMember();
 	}

@@ -1,5 +1,6 @@
 package com.hoboss.aopdemo.dao;
 
 public interface AccountDAO {
-    void addAccount();
+    void addAccount(String account);
+    void setName(String name);
 }

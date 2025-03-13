@@ -5,10 +5,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(1)   // create order for aspect
 public class MyDemoLoggingAspect {
 
     // AspectJ’s pointcut expression language
@@ -29,7 +31,7 @@ public class MyDemoLoggingAspect {
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         System.out.println("Method: " + methodSignature);
 
-        // Display method arguments
+        // Display method argumentsaccountDAO.setName("test")
         Object[] args = joinPoint.getArgs();
         System.out.println("Arguments: ");
         for (Object arg : args) {
@@ -44,5 +46,21 @@ public class MyDemoLoggingAspect {
     @Before("forDaoPackage()")
     public void beforeAddAccountAdvice2() {
         System.out.println("\n=====>>> Executing @Before advice on addAccount() <<<=====");
+    }
+
+    // Pointcut for all getter methods
+    @Pointcut("execution(public * get*(..))")
+    private void allget() {}
+
+    // Pointcut for all getter methods
+    @Pointcut("execution(public * set*(..))")
+    private void allset() {}
+
+    @Pointcut("allget() || allset()")
+    private void allgetAndallset() {}
+
+    @Before("allgetAndallset)")
+    public void beforeAllgetAndAllSet() {
+        System.out.println("\n=====>>> Executing @Before advice on all get and all set() <<<333333");
     }
 }
