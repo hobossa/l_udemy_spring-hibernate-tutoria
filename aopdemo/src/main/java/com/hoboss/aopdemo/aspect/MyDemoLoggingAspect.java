@@ -3,6 +3,7 @@ package com.hoboss.aopdemo.aspect;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 
@@ -34,5 +35,14 @@ public class MyDemoLoggingAspect {
         for (Object arg : args) {
             System.out.println(arg);
         }
+    }
+
+    // Pointcut Declaration
+    @Pointcut("execution(* com.hoboss.aopdemo.dao.*.*(..))")
+    private void forDaoPackage() {}
+
+    @Before("forDaoPackage()")
+    public void beforeAddAccountAdvice2() {
+        System.out.println("\n=====>>> Executing @Before advice on addAccount() <<<=====");
     }
 }
